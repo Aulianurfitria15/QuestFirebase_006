@@ -78,3 +78,18 @@ class FirebaseRepositorySiswa : RepositorySiswa {
         }
     }
 
+    override suspend fun hapusSatuSiswa(id: Long) {
+        try {
+            val allDocs = collection.get().await().documents
+            val matchedDoc = allDocs.find { doc ->
+                doc.id.hashCode().toLong() == id
+            }
+
+            matchedDoc?.let { doc ->
+                collection.document(doc.id).delete().await()
+            }
+        } catch (e: Exception) {
+        }
+    }
+
+}
