@@ -46,4 +46,13 @@ RepositorySiswa): ViewModel() {
         }
     }
 
-
+    suspend fun hapusSatuSiswa(){
+        try {
+            repositorySiswa.hapusSatuSiswa(idSiswa)
+            println("Sukses hapus data: $idSiswa")
+        }
+        catch (e:Exception){
+            println("Gagal hapus data: ${e.message}")
+        }
+    }
+}
